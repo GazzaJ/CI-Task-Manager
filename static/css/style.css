@@ -2,6 +2,19 @@
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
 }
 
+nav .brand-logo {
+    padding-left: 2rem;
+}
+
 .flashes h4 {
     line-height: 2;
+}
+
+.btn-small {
+    margin: 0.5rem;
+}
+
+.collapsible-header .col strong {
+    margin: 0.5rem;
+    line-height: 2.5rem;
 }
