@@ -16,7 +16,7 @@
                         {% endif %}
                     </div>    
                     <div class="col s3">
-                        <a href="" class="waves-effect waves-light btn-small red accent-2 right">Edit</a>
+                        <a href="{{ url_for('edit_task', task_id=task._id) }}" class="waves-effect waves-light btn-small red accent-2 right">Edit</a>
                         <a href="" class="waves-effect waves-light btn-small green accent-4 right">Completed</a>
                     </div>                
             </div>

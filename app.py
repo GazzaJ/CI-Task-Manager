@@ -44,7 +44,7 @@ def register():
         # Put the new user into 'session' cookie
         session["user"] = request.form.get("username").lower()
         flash("Registration Successful!")
-        return redirect( url_for("profile", username=session["user"]))
+        return redirect(url_for("profile", username=session["user"]))
 
     return render_template("register.html")
 
@@ -63,7 +63,7 @@ def login():
                     session["user"] = request.form.get("username").lower()
                     flash("Welcome, {}".format(
                         request.form.get("username")))
-                    return redirect( url_for(
+                    return redirect(url_for(
                         "profile", username=session["user"]))
             else:
                 # Invalid password match
@@ -104,7 +104,8 @@ def add_task():
         task = {
             "category_name": request.form.get("category_name"),
             "task_name": request.form.get("task_name"), 
-            # Use .getlist() if you have a dropdown list that can be an array of items
+            # Use .getlist() if you have a dropdown list that can be an 
+            # array of items
             "task_description": request.form.get("task_description"),
             "is_urgent": is_urgent,
             "due_date": request.form.get("due_date"),
@@ -116,6 +117,14 @@ def add_task():
 
     categories = mongo.db.categories.find().sort("category_name", 1)
     return render_template("add_task.html", categories=categories)
+
+
+@app.route("/edit_task/<task_id>", methods=["GET", "POST"])
+def edit_task(task_id):
+    task = mongo.db.tasks.find_one({"_id": ObjectId(task_id)})
+    categories = mongo.db.categories.find().sort("category_name", 1)
+    return render_template("edit_task.html", task=task, categories=categories)
+
 
 
 if __name__ == "__main__":
